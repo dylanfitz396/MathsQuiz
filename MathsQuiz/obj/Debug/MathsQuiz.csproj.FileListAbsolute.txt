@@ -7,3 +7,4 @@ C:\Users\Dylan Fitzgerald\Documents\BIS\Fourth Year\Web Dev C#\MathsQuiz\MathsQu
 C:\Users\Dylan Fitzgerald\Documents\BIS\Fourth Year\Web Dev C#\MathsQuiz\MathsQuiz\obj\Debug\MathsQuiz.csproj.GenerateResource.Cache
 C:\Users\Dylan Fitzgerald\Documents\BIS\Fourth Year\Web Dev C#\MathsQuiz\MathsQuiz\obj\Debug\MathsQuiz.exe
 C:\Users\Dylan Fitzgerald\Documents\BIS\Fourth Year\Web Dev C#\MathsQuiz\MathsQuiz\obj\Debug\MathsQuiz.pdb
+C:\Git\MathsQuiz\MathsQuiz\bin\Debug\MathsQuiz.exe.config

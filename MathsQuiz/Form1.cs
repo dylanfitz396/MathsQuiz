@@ -1,36 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MathsQuiz
 {
     public partial class Form1 : Form
     {
-        //Create a Random object to generate random numbers.
-        Random randomizer = new Random();
-
         //these ints will store the numbers
         // for the addition problem
         int addend1;
         int addend2;
+
+        int dividend;
+        int divisor;
 
         int minuend;
         int subtrahend;
 
         int multiplicand;
         int multiplier;
+        //Create a Random object to generate random numbers.
+        private readonly Random randomizer = new Random();
 
-        int dividend;
-        int divisor;
 
         // this int will keep track of the time left
-        int timeLeft;       
+        private int timeLeft;
 
         public Form1()
         {
@@ -39,7 +32,6 @@ namespace MathsQuiz
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -73,8 +65,8 @@ namespace MathsQuiz
 
             // Fill in the division problem
             divisor = randomizer.Next(2, 11);
-            int temporaryQuotient = randomizer.Next(2, 11);
-            dividend = divisor * temporaryQuotient;
+            var temporaryQuotient = randomizer.Next(2, 11);
+            dividend = divisor*temporaryQuotient;
             dividedLeftLabel.Text = dividend.ToString();
             dividedRightLabel.Text = divisor.ToString();
             quotient.Value = 0;
@@ -111,42 +103,36 @@ namespace MathsQuiz
                 MessageBox.Show("You didn't finish in time.", "Sorry");
                 sum.Value = addend1 + addend2;
                 difference.Value = minuend - subtrahend;
-                product.Value = multiplicand * multiplier;
-                quotient.Value = dividend / divisor;
+                product.Value = multiplicand*multiplier;
+                quotient.Value = dividend/divisor;
                 startButton.Enabled = true;
-
-
             }
         }
 
         /// <summary>
-        /// check the answer to see if the user got everything right.
+        ///     check the answer to see if the user got everything right.
         /// </summary>
         /// <returns>True if the answer's correct, false otherwise.</returns>
-            private bool CheckTheAnswer()
+        private bool CheckTheAnswer()
+        {
+            if ((sum.Value == addend1 + addend2)
+                && (minuend - subtrahend == difference.Value)
+                && (multiplicand*multiplier == product.Value)
+                && (dividend/divisor == quotient.Value))
+                return true;
+            return false;
+        }
+
+        private void answer_Enter(object sender, EventArgs e)
+        {
+            //Select the whole answer in the numericUpDown control.
+            var answerBox = sender as NumericUpDown;
+
+            if (answerBox != null)
             {
-                if ((sum.Value == addend1 + addend2)
-                    && (minuend - subtrahend == difference.Value)
-                    && (multiplicand * multiplier == product.Value)
-                    && (dividend / divisor == quotient.Value))
-                    return true;
-                else
-                    return false;
-
+                var lengthOfAnswer = answerBox.Value.ToString().Length;
+                answerBox.Select(0, lengthOfAnswer);
             }
-
-            private void answer_Enter(object sender, EventArgs e)
-            {
-                //Select the whole answer in the numericUpDown control.
-                NumericUpDown answerBox = sender as NumericUpDown;
-
-                if (answerBox != null)
-                {
-                    int lengthOfAnswer = answerBox.Value.ToString().Length;
-                    answerBox.Select(0, lengthOfAnswer);
-                }
-            }
-
-        
+        }
     }
 }
